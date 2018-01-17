@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="https://cdn.dwolla.com/1/dwolla.js"></script>
+  </head>
+  <body>
+    <div id="mainContainer">
+      <input type="button" id="start" value="Add Bank">
+    </div>
+
+    <div id="iavContainer"></div>
+    <script type="text/javascript">
+      document.querySelector('#start').onclick = function() {
+        var iavToken = '';
+        dwolla.configure('sandbox');
+        dwolla.iav.start(iavToken, {
+                container: 'iavContainer',
+                stylesheets: [
+                  'http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext',
+                ],
+                microDeposits: false,
+                fallbackToMicroDeposits: true
+              }, function(err, res) {
+          console.log('Error: ' + JSON.stringify(err) + ' -- Response: ' + JSON.stringify(res));
+        });
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+zip -r9 ReceivePaymentLambda.zip $VIRTUAL_ENV/lib/python3.6/site-packages/*
+zip -g ReceivePaymentLambda.zip receive_payment_lambda.py
+
+aws lambda update-function-code --function-name $RECEIVE_PAYMENT_LAMBDA_ARN --zip-file fileb://$(pwd)/ReceivePaymentLambda.zip
