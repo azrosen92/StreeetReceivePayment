@@ -1,28 +1,31 @@
 <html>
   <head>
     <script src="https://cdn.dwolla.com/1/dwolla.js"></script>
+    <style>
+      * {
+        font-size: 24pt;
+      }
+      .popular-list__item {
+        width: 100%;
+      }
+      .dwolla-iav-link {
+        padding: padding: 30px 0px;
+        text-align: center;
+        font-size: ;
+      }
+      .island__column {
+        width: 100%;
+      }
+      .yodlee-bank-logo {
+        min-height: 0;
+      }
+      .dwolla-iav-text-box {
+        font-size: 24pt;
+      }
+    </style>
   </head>
   <body>
-    <div id="mainContainer">
-      <input type="button" id="start" value="Add Bank">
-    </div>
-
     <div id="iavContainer"></div>
-    <script type="text/javascript">
-      document.querySelector('#start').onclick = function() {
-        var iavToken = '';
-        dwolla.configure('sandbox');
-        dwolla.iav.start(iavToken, {
-                container: 'iavContainer',
-                stylesheets: [
-                  'http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext',
-                ],
-                microDeposits: false,
-                fallbackToMicroDeposits: true
-              }, function(err, res) {
-          console.log('Error: ' + JSON.stringify(err) + ' -- Response: ' + JSON.stringify(res));
-        });
-      };
-    </script>
+    <div id="errorContainer"></div>
   </body>
 </html>

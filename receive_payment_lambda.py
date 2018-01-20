@@ -10,7 +10,7 @@ def run(json_input, context):
     funding_source = message["PayerFundingSource"]["Value"]
     performer_id = message["PerformerIdentifier"]["Value"]
     payment_amount = int(message["PaymentAmount"]["Value"])
-    
+
     print("%s pays %s $%.2f" % (payer_id, performer_id, payment_amount/100))
 
     client = dwollav2.Client(
@@ -49,22 +49,22 @@ def run(json_input, context):
     # transfer = app_token.post('transfers', request_body)
     # return transfer.headers['location']
 
-    # # Create a customer.
-    # customer_data = {
-    #   'firstName': 'Joe',
-    #   'lastName': 'Buyer',
-    #   'email': 'joe.buyer%s@gmail.com' % secrets.token_hex(16),
-    #   'ipAddress': '69.202.208.40'
-    # }
-    # new_customer = app_token.post('customers', customer_data)
-    # customer_url = new_customer.headers['location']
-    # print("Customer initialized: %s" % customer_url)
+    # Create a customer.
+    customer_data = {
+      'firstName': 'Joe',
+      'lastName': 'Buyer',
+      'email': 'joe.buyer%s@gmail.com' % secrets.token_hex(16),
+      'ipAddress': '69.202.208.40'
+    }
+    new_customer = app_token.post('customers', customer_data)
+    customer_url = new_customer.headers['location']
+    print("Customer initialized: %s" % customer_url)
 
-    # # Attach a funding source to the customer.
-    # # IAV: 
-    # customer = app_token.post('%s/iav-token' % customer_url)
-    # iav_token = customer.body['token']
-    # print("IAV Token: %s" % iav_token)
+    # Attach a funding source to the customer.
+    # IAV:
+    customer = app_token.post('%s/iav-token' % customer_url)
+    iav_token = customer.body['token']
+    print("IAV Token: %s" % iav_token)
 
 def __dwolla_url(resource, resource_id):
   return "%s/%s/%s" % (os.environ['DWOLLA_BASE_URL'], resource, resource_id)
